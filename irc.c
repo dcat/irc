@@ -38,7 +38,8 @@ ping_cb(int s, char buf[MSG_MAX])
 }
 
 void
-privmsg_cb(int s, char buf[MSG_MAX]) {
+privmsg_cb(int s, char buf[MSG_MAX])
+{
 	char *msg;
 	char from[MSG_MAX];
 	char to[MSG_MAX];
@@ -47,7 +48,8 @@ privmsg_cb(int s, char buf[MSG_MAX]) {
 	msg = (buf + 1);
 
 	/* increase pointer until ':' is found, and then once more */
-	while (*msg && *msg++ != ':');
+	while (*msg && *msg++ != ':')
+		;
 	/*                         `                 *
 	 *                           \               *
 	 * :dcat!de@d.cat PRIVMSG bob :hey man!!!\0  *
@@ -181,7 +183,8 @@ irc_read(int s)
  *	loop to handle all callbacks
  */
 int
-irc_loop(int s) {
+irc_loop(int s)
+{
 	char buf[MSG_MAX];
 	char tbuf[MSG_MAX]; /* tokenizer buffer */
 	char *tok;
@@ -208,8 +211,6 @@ irc_loop(int s) {
 
 			*ln++ = (char)chr;
 		}
-
-		//printf("%s\n", buf);
 
 		/* loop through callbacks */
 		y = 0;
